@@ -1,19 +1,21 @@
+import { addNewUser, deleteUserID, getAllUsers, getUserByID, updateUserByID } from "../controllers/AppController";
+
 const routes = (app) =>{
     app.route('/user')
-       .get((req,res)=>
-        res.send('GET User request successful!'))
+       .get((req,res, next)=>{
+           //Added middleware next to perform action before proceeding the  request
+           //We can see this log in terminal
+           console.log(`Request from ${req.originalUrl}`)
+           console.log(`Request method ${req.method}`)
+           next();
+       },getAllUsers)
 
-        .post((req,res)=>{
-            res.send('POST user data successfully!');
-        })
+        .post(addNewUser)
 
         app.route('/user/:userID')
-           .put((req,res)=>
-           res.send("PUT request for userID successfully!"))
-
-           .delete((req,res)=>{
-               res.send('DELETE request sucessfully!')
-           })
+           .get(getUserByID)
+           .put(updateUserByID)
+           .delete(deleteUserID)
 }
 
 export default routes;

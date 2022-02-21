@@ -1,10 +1,16 @@
 import express from 'express';
+import routes from './routes/AppRoutes';
+
+
 const PORT = '4000';
+
 
 /**
  * Initializing express
  */
 const app = express();
+
+routes(app)
 
 /**
  * This message will display on browser while opening with port

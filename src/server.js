@@ -41,6 +41,11 @@ app.get('/', (req, res) => {
 });
 
 /**
+ * reading satic file from public folder
+ */
+app.use(express.static('public'))
+
+/**
  * A display message in terminal
  */
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
